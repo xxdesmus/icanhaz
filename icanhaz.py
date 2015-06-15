@@ -31,18 +31,18 @@ traceroute_bin = "/bin/traceroute-suid"
 
 @app.route("/")
 def icanhazafunction():
-    if 'icanhazptr' in request.host:
-        # The request is for *.icanhazptr.com
+    if 'canhazptr' in request.host:
+        # The request is for *.canhazptr.com
         try:
             output = socket.gethostbyaddr(request.remote_addr)
             result = output[0]
         except:
             result = request.remote_addr
-    elif 'icanhazepoch' in request.host:
+    elif 'canhazepoch' in request.host:
         epoch_time = int(time.time())
         result = epoch_time
-    elif 'icanhaztrace' in request.host:
-        # The request is for *.icanhaztraceroute.com
+    elif 'canhaztrace' in request.host:
+        # The request is for *.canhaztraceroute.com
         valid_ip = False
         try:
             socket.inet_pton(socket.AF_INET, request.remote_addr)
@@ -61,7 +61,7 @@ def icanhazafunction():
                 stdout=subprocess.PIPE).communicate()[0].strip()
         else:
             result = request.remote_addr
-    elif 'icanhazproxy' in request.host:
+    elif 'canhazproxy' in request.host:
         proxy_headers = ['via', 'x-forwarded-for', 'forwarded', 'client-ip',
             'useragent_via', 'proxy_connection', 'xproxy_connection',
             'http_pc_remote_addr', 'http_client_ip',
@@ -76,7 +76,7 @@ def icanhazafunction():
         else:
             return Response(""), 204
     else:
-        # The request is for *.icanhazip.com or something we don't recognize
+        # The request is for *.canhazip.com or something we don't recognize
         result = request.remote_addr
     return Response("%s\n" % result, mimetype="text/plain")
 
